@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createEventController, deleteController, listEventController, updateController } from "./controllers/CreateEventController";
 import { CreateCategoryController, ListCategoryController, deleteCategoryController, updateCategoryController } from "./controllers/CategoryController";
-import { CreatePlaceController, ListPlaceController, UpdatedPlaceController } from "./controllers/PlaceController";
+import { CreatePlaceController, DeletePlaceController, ListPlaceController, UpdatedPlaceController } from "./controllers/PlaceController";
 
 const router = Router();
 
@@ -29,6 +29,8 @@ const listPlace = new ListPlaceController();
 router.get("/listPlace", listPlace.handle);
 const updatePlace = new UpdatedPlaceController();
 router.put("/place/:id", updatePlace.handle);
+const deletePlace = new DeletePlaceController();
+router.delete("/place/:id", deletePlace.handle);
 
 
 export { router };

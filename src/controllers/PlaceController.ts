@@ -46,3 +46,19 @@ export class UpdatedPlaceController {
     }
   }
 }
+
+
+export class DeletePlaceController{
+  async handle(request: Request, response: Response){
+    try{
+      const id = request.params.id
+      const deletPlace = await prismaClient.place.delete({
+        where:{id}
+      })
+      return response.status(204).json({})
+    }
+    catch(error){
+      return response.status(500).json({messageError:'Server Error!'})
+    }
+  }
+}
