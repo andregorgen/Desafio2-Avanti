@@ -28,3 +28,37 @@ export class ListPlaceController{
     }
   }
 }
+
+export class UpdatedPlaceController {
+  async handle(request: Request, response: Response) {
+    try {
+      const { name } = request.body;
+      const id = request.params.id;
+      const updatePlace = await prismaClient.place.update({
+        where:{id},
+        data:{
+          name
+        }
+      });
+      return response.status(200).json({ message:'Place Updated ', updatePlace});
+    } catch(e) {
+      return response.status(500).json({messageError:'Server Error!'});
+    }
+  }
+}
+
+
+export class DeletePlaceController{
+  async handle(request: Request, response: Response){
+    try{
+      const id = request.params.id
+      const deletPlace = await prismaClient.place.delete({
+        where:{id}
+      })
+      return response.status(204).json({})
+    }
+    catch(error){
+      return response.status(500).json({messageError:'Server Error!'})
+    }
+  }
+}
