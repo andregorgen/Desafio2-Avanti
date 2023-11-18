@@ -11,29 +11,30 @@ datasource db {
 }
 
 model Event {
-  id         String   @id @default(uuid())
-  name       String
-  date       DateTime
+  id          String   @id @default(uuid())
+  name        String
+  date        DateTime
   description String
-  category   Category @relation(fields: [category_id], references: [id])
+  category    Category @relation(fields: [category_id], references: [id])
   category_id String
-  place      Place @relation(fields: [place_id], references: [id])
-  place_id   String
+  place       Place    @relation(fields: [place_id], references: [id])
+  place_id    String
+
   @@map("events")
 }
 
 model Category {
-  id         String   @id @default(uuid())
-  name       String   @unique
-  event      Event[]
+  id    String  @id @default(uuid())
+  name  String  @unique
+  event Event[]
 
   @@map("categories")
 }
 
 model Place {
-  id         String   @id @default(uuid())
-  name       String   @unique
-  event      Event[]
+  id    String  @id @default(uuid())
+  name  String  @unique
+  event Event[]
 
   @@map("places")
 }
