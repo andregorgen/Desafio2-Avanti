@@ -19,6 +19,7 @@ Lista com as funcionalidades:
 - [X] Deletar
 - [X] Filtrar
 
+![Gerando token](https://github.com/andregorgen/desafio_2/blob/master/assets/Print%20Insomnia.png)
 
 ## 🔧 Instalação
 1. Após clonar este repositório, instale as dependências com o seguinte comando:
