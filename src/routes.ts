@@ -2,9 +2,15 @@ import { Router } from "express";
 import { createEventController, deleteController, listEventController, updateController } from "./controllers/EventController";
 import { CreateCategoryController, ListCategoryController, deleteCategoryController, updateCategoryController } from "./controllers/CategoryController";
 import { CreatePlaceController, DeletePlaceController, ListPlaceController, UpdatedPlaceController } from "./controllers/PlaceController";
-import { FindByCategoryController, FindByPlaceController, FindByDateController, FindByEventController} from "./controllers/SearchController";
+import { FindByCategoryController, FindByPlaceController, FindByDateController, FindByEventController } from "./controllers/SearchController";
+import { LoginUser, createUser } from "./controllers/user";
 
 const router = Router();
+
+const user = new createUser();
+const login = new LoginUser();
+router.post('/register', user.handle)
+router.post('/login', login.handle)
 
 const createEvent = new createEventController();
 router.post("/event", createEvent.handle);
@@ -43,4 +49,3 @@ const findByEvent = new FindByEventController();
 router.get("/events/:id", findByEvent.handle);
 
 export { router };
- 
