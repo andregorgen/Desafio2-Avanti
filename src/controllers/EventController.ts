@@ -4,15 +4,15 @@ import { prismaClient } from '../database/prismaClient';
 export class createEventController{
   async handle(request: Request, response: Response) {
     try {
-        const { name, date, description, place, category } = request.body;
+        const { name, date, description, place_id, category_id } = request.body;
 
         const event = await prismaClient.event.create({
           data: {
             name,
             date,
             description,
-            place,
-            category
+            place_id,
+            category_id
           },
         });
       return response.status(201).json(event);
@@ -36,16 +36,16 @@ export class listEventController{
 export class updateController{
   async handle(request: Request, response: Response){
     try{
-      const {name, date,category,place,description} = request.body;
+      const {name, date,category_id,place_id,description} = request.body;
       const id = request.params.id
       const new_event = await prismaClient.event.update({
         where:{id},
         data:{
-        name,
-        date,
-        category,
-        place,
-        description
+          name,
+          date,
+          category_id,
+          place_id,
+          description
         }
       });
       return response.status(200).json({message:'User Updated ',new_event})
