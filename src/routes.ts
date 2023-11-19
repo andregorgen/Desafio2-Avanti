@@ -5,13 +5,14 @@ import { CreatePlaceController, DeletePlaceController, ListPlaceController, Upda
 import { FindByCategoryController, FindByPlaceController, FindByDateController, FindByEventController } from "./controllers/SearchController";
 import { LoginUser, createUser } from "./controllers/user";
 import { auth } from "./auth/authorization";
+import { validationLoginFields, validationUserFields } from "./middleware/validation";
 
 const router = Router();
 
 const user = new createUser();
 const login = new LoginUser();
-router.post('/register', user.handle)
-router.post('/login', login.handle)
+router.post('/register', validationUserFields, user.handle)
+router.post('/login', validationLoginFields, login.handle)
 
 router.use(auth);
 
