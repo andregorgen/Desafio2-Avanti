@@ -4,6 +4,7 @@ import { CreateCategoryController, ListCategoryController, deleteCategoryControl
 import { CreatePlaceController, DeletePlaceController, ListPlaceController, UpdatedPlaceController } from "./controllers/PlaceController";
 import { FindByCategoryController, FindByPlaceController, FindByDateController, FindByEventController } from "./controllers/SearchController";
 import { LoginUser, createUser } from "./controllers/user";
+import { auth } from "./auth/authorization";
 
 const router = Router();
 
@@ -11,6 +12,8 @@ const user = new createUser();
 const login = new LoginUser();
 router.post('/register', user.handle)
 router.post('/login', login.handle)
+
+router.use(auth);
 
 const createEvent = new createEventController();
 router.post("/event", createEvent.handle);
