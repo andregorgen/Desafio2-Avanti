@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import { prismaClient } from '../database/prismaClient';
 
+//Criação de controle para buscas e filtros
 
+//Encontra os eventos de uma categoria escolhida, passada no parâmetro
 export class FindByCategoryController{
     async handle(request: Request, response: Response) {
       try {
@@ -18,7 +20,7 @@ export class FindByCategoryController{
       }
     }
   }
-
+//Encontra os eventos em um local passado no parâmetro
   export class FindByPlaceController{
     async handle(request: Request, response: Response) {
       try {
@@ -35,7 +37,7 @@ export class FindByCategoryController{
       }
     }
   }
-
+//Encontra os eventos em uma data. Passar data no formato AAAA-MM-DDT00:00Z
   export class FindByDateController{
     async handle(request: Request, response: Response) {
       try {
@@ -52,7 +54,7 @@ export class FindByCategoryController{
       }
     }
   }
-
+//Encontra um evento pelo seu ID
   export class FindByEventController{
     async handle(request: Request, response: Response) {
       try {
