@@ -100,6 +100,5 @@ Eventos
 * **[Ewerton Bertoldo](https://github.com/EwertonRafael)** - Desenvolvedor
 * **[Herik Erberth](https://github.com/herikerbeth)** - Desenvolvedor
 * **[Jéssica Vieira](https://github.com/jessicavsampaio)** - Desenvolvedora
-* **[Luiz Felipe Moraes](?)** - Desenvolvedor
-* **[Marcelo Reggiani](?)** - Desenvolvedor
+* **[Luiz Felipe Moraes](https://github.com/luizfelipemoraessantos)** - Desenvolvedor
 * **[Paulo Victor Rocha](https://github.com/PauloVictorRocha)** - Desenvolvedor
