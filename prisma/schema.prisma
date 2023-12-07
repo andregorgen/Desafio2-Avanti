@@ -22,7 +22,7 @@ model Users {
 model Event {
   id          String   @id @default(uuid())
   name        String
-  date        DateTime
+  date        String
   description String
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
