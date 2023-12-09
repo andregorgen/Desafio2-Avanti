@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createEventController, deleteController, listEventController, updateController } from "./controllers/EventController";
+import { createEventController, deleteController, listEventController, updateController, ListEventIdController } from "./controllers/EventController";
 import { CreateCategoryController, ListCategoryController, deleteCategoryController, updateCategoryController } from "./controllers/CategoryController";
 import { CreatePlaceController, DeletePlaceController, ListPlaceController, UpdatedPlaceController } from "./controllers/PlaceController";
 import { FindByCategoryController, FindByPlaceController, FindByDateController, FindByEventController } from "./controllers/SearchController";
@@ -14,12 +14,14 @@ const login = new LoginUser();
 router.post('/register', validationUserFields, user.handle)
 router.post('/login', validationLoginFields, login.handle)
 
-router.use(auth);
+// router.use(auth);
 
 const createEvent = new createEventController();
 router.post("/event", createEvent.handle);
 const listEvent = new listEventController();
 router.get("/event", listEvent.handle);
+const listIdEvent = new ListEventIdController();
+router.get("/event/:id", listIdEvent.handle);
 const updateList = new updateController();
 router.put("/event/:id", updateList.handle)
 const delete_id = new deleteController();

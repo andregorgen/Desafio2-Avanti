@@ -61,6 +61,41 @@ export class listEventController {
   }
 }
 
+export class ListEventIdController {
+  async handle(request: Request, response: Response) {
+    try {
+      const id = request.params.id
+      const event = await prismaClient.event.findFirst({
+        where: { id },
+        select: {
+          id: true,
+          name: true,
+          date: true,
+          description: true,
+          category: { select: { name: true } },
+          place: { select: { name: true } },
+        },
+      });
+
+      if (!event) {
+        return response.status(404).json({ message: 'Evento não encontrado.' });
+      }
+
+      const answerFormated = {
+        id: event.id,
+        name: event.name,
+        date: event.date,
+        description: event.description,
+        category: event.category.name,
+        place: event.place.name,
+      };
+      return response.status(200).json(answerFormated)
+    } catch (error) {
+      return response.status(500).json({ messageError: 'Server Error!' })
+    }
+  }
+}
+
 export class updateController {
   async handle(request: Request, response: Response) {
     try {
