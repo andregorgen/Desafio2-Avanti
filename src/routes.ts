@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createEventController, deleteController, listEventController, updateController, ListEventIdController } from "./controllers/EventController";
+import { createEventController, deleteController, listEventController, updateController, ListEventIdController, listEventByCategoryController, listEventByPlaceController } from "./controllers/EventController";
 import { CreateCategoryController, ListCategoryController, deleteCategoryController, updateCategoryController } from "./controllers/CategoryController";
 import { CreatePlaceController, DeletePlaceController, ListPlaceController, UpdatedPlaceController } from "./controllers/PlaceController";
 import { FindByCategoryController, FindByPlaceController, FindByDateController, FindByEventController } from "./controllers/SearchController";
@@ -53,5 +53,11 @@ const findByDate = new FindByDateController();
 router.get("/dates/:date", findByDate.handle);
 const findByEvent = new FindByEventController();
 router.get("/events/:id", findByEvent.handle);
+
+const findEventByCategory = new listEventByCategoryController();
+router.get("/eventsByCategory/:name", findEventByCategory.handle);
+const findEventByPlace = new listEventByPlaceController();
+router.get("/eventsByPlace/:name", findEventByPlace.handle);
+
 
 export { router };
