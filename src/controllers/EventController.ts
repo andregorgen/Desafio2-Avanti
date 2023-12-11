@@ -203,3 +203,35 @@ export class listEventByPlaceController {
   }
 }
 
+export class listEventByDateController {
+  async handle(request: Request, response: Response) {
+    const { date } = request.params
+    try {
+      const event = await prismaClient.event.findMany({
+        where: {
+          date
+        },
+        select: {
+          id: true,
+          name: true,
+          date: true,
+          description: true,
+          category: { select: { name: true } },
+          place: { select: { name: true } },
+        },
+      });
+      const answerFormated = event.map((event) => ({
+        id: event.id,
+        name: event.name,
+        date: event.date,
+        description: event.description,
+        category: event.category.name,
+        place: event.place.name,
+      }));
+
+      return response.status(200).json(answerFormated);
+    } catch (error) {
+      return response.status(500).json({ error: 'A server error occurred' });
+    }
+  }
+}
